@@ -33,7 +33,7 @@ class PetPage extends StatelessWidget {
           resizeToAvoidBottomInset: false,
           body: SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.all(25.0),
+              padding: const EdgeInsets.all(18.0),
               child: Column(
                 children: [
                   SizedBox(
@@ -107,6 +107,7 @@ class PetPage extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: Text("Birthday: 17-OCT-2010",
+                                      overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
                                       fontSize: ScreenUtil().setSp(13),
                                       fontWeight: FontWeight.normal)
