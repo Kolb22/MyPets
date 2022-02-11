@@ -274,6 +274,11 @@ class PetPage extends StatelessWidget {
             spaceBetweenChildren: 10,
             children: [
               SpeedDialChild(
+                  child: const Icon(Icons.search),
+                  label: "Search",
+                  labelStyle: const TextStyle(fontWeight: FontWeight.bold)
+              ),
+              SpeedDialChild(
                   child: const Icon(Icons.download),
                   label: "Download PDF",
                   labelStyle: const TextStyle(fontWeight: FontWeight.bold)
