@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:pets/app/global_widgets/pet_card.dart';
 import 'package:pets/app/routes/app_routes.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'pet_list_controller.dart';
 
 class PetListPage extends StatelessWidget {
@@ -50,6 +51,26 @@ class PetListPage extends StatelessWidget {
                   ),
                 )
               ]
+          ),
+          floatingActionButton: SpeedDial(
+            animatedIcon: AnimatedIcons.menu_close,
+            backgroundColor: Colors.black,
+            overlayColor: Colors.black,
+            overlayOpacity: 0.4,
+            spacing: 5,
+            spaceBetweenChildren: 10,
+            children: [
+              SpeedDialChild(
+                child: const Icon(Icons.search),
+                  label: "Search",
+                  labelStyle: const TextStyle(fontWeight: FontWeight.bold)
+              ),
+              SpeedDialChild(
+                  child: const Icon(Icons.create),
+                  label: "Create",
+                  labelStyle: const TextStyle(fontWeight: FontWeight.bold)
+              ),
+            ],
           ),
         ),
       ),

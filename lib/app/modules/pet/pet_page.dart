@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:pets/app/modules/pet/pet_controller.dart';
 import 'package:share_plus/share_plus.dart';
@@ -181,7 +182,7 @@ class PetPage extends StatelessWidget {
                             children: [
                               //horizontalLine(),
                               SizedBox(
-                                height: MediaQuery.of(context).size.height / 3,
+                                height: MediaQuery.of(context).size.height / 3.7,
                                 child: ListView.builder(
                                   itemCount: 6,
                                   shrinkWrap: true,
@@ -233,7 +234,7 @@ class PetPage extends StatelessWidget {
                             ),
                             children: [
                               SizedBox(
-                                height: MediaQuery.of(context).size.height / 3,
+                                height: MediaQuery.of(context).size.height / 3.7,
                                 child: ListView.builder(
                                   itemCount: 10,
                                   shrinkWrap: true,
@@ -263,6 +264,26 @@ class PetPage extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          floatingActionButton: SpeedDial(
+            animatedIcon: AnimatedIcons.menu_close,
+            backgroundColor: Colors.black,
+            overlayColor: Colors.black,
+            overlayOpacity: 0.4,
+            spacing: 5,
+            spaceBetweenChildren: 10,
+            children: [
+              SpeedDialChild(
+                  child: const Icon(Icons.download),
+                  label: "Download PDF",
+                  labelStyle: const TextStyle(fontWeight: FontWeight.bold)
+              ),
+              SpeedDialChild(
+                  child: const Icon(Icons.edit),
+                  label: "Edit",
+                  labelStyle: const TextStyle(fontWeight: FontWeight.bold)
+              ),
+            ],
           ),
         ),
       ),
