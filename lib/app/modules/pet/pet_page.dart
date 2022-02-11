@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:pets/app/modules/pet/pet_controller.dart';
+import 'package:share_plus/share_plus.dart';
 
 class PetPage extends StatelessWidget {
   const PetPage({Key? key}) : super(key: key);
@@ -24,7 +25,9 @@ class PetPage extends StatelessWidget {
               actions: [
                 IconButton(
                   icon: const Icon(Icons.share),
-                  onPressed: () {},
+                  onPressed: () {
+                    Share.share("The number of my list is:");
+                  },
                 ),
                 // add more IconButton
               ],
@@ -236,7 +239,6 @@ class PetPage extends StatelessWidget {
                                   shrinkWrap: true,
                                   itemBuilder: (context, i) {
                                     return  ExpansionTile(title: Text("Veterinario"),
-
                                       expandedCrossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
                                         Row(
@@ -247,7 +249,8 @@ class PetPage extends StatelessWidget {
                                             Text("probando"),
                                           ],
                                         )
-                                      ],);
+                                      ],
+                                    );
                                   },
                                 ),
                               ),

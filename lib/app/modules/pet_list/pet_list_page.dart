@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pets/app/global_widgets/pet_card.dart';
 import 'package:pets/app/routes/app_routes.dart';
-
+import 'package:share_plus/share_plus.dart';
 import 'pet_list_controller.dart';
 
 class PetListPage extends StatelessWidget {
@@ -26,7 +26,9 @@ class PetListPage extends StatelessWidget {
             actions: [
               IconButton(
                 icon: const Icon(Icons.share),
-                onPressed: () {},
+                onPressed: () {
+                  Share.share("The number of my list is:");
+                },
               ),
               // add more IconButton
             ],
