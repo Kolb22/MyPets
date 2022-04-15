@@ -279,6 +279,7 @@ class PetPage extends StatelessWidget {
                   labelStyle: const TextStyle(fontWeight: FontWeight.bold)
               ),
               SpeedDialChild(
+                  onTap: _.createPDF ,
                   child: const Icon(Icons.download),
                   label: "Download PDF",
                   labelStyle: const TextStyle(fontWeight: FontWeight.bold)
