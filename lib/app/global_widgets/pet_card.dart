@@ -12,14 +12,14 @@ class PetCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        this.onCardClick!();
+        onCardClick!();
       },
       child: Container(
           decoration: BoxDecoration(
               border: Border.all(color: Colors.black, width: 3),
               borderRadius: const BorderRadius.all(Radius.circular(25))
           ),
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
           height: 150,
           child: Stack(
             children: [
@@ -56,7 +56,7 @@ class PetCard extends StatelessWidget {
                       PetIcon(
                           color: Color(0xFFffdec8),
                           iconName: "Dog"),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       const Text("Yordy",
                           style: TextStyle(color: Color(0xFFffdec8), fontSize: 25, fontWeight: FontWeight.bold))
                     ],
