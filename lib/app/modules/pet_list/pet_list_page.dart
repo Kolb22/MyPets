@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:pets/app/global_widgets/logout_icon_button.dart';
 import 'package:pets/app/global_widgets/pet_card.dart';
+import 'package:pets/app/global_widgets/share_icon_button.dart';
 import 'package:pets/app/routes/app_routes.dart';
-import 'package:share_plus/share_plus.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'pet_list_controller.dart';
 
@@ -24,14 +25,9 @@ class PetListPage extends StatelessWidget {
                 color: Colors.black
             )),
             backgroundColor: const Color(0xFFffdec8),
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.share),
-                onPressed: () {
-                  Share.share("The number of my list is:");
-                },
-              ),
-              // add more IconButton
+            actions: const [
+              ShareIconButton(id: "213123"),
+              LogoutIconButton()
             ],
           ),
           backgroundColor: const Color(0xFFffdec8),
