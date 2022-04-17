@@ -8,7 +8,7 @@ class RegisterPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<RegisterController>(
-      builder: (registerController) => Scaffold(),
+      builder: (registerController) => const Scaffold(),
     );
   }
 }

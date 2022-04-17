@@ -4,30 +4,28 @@ import 'home_controller.dart';
 import 'package:get/get.dart';
 
 class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
       builder: (_) => Scaffold(
         appBar: AppBar(
-          title: Text("Pets", style: TextStyle(color: Colors.black)),
+          title: const Text("Pets", style: TextStyle(color: Colors.black)),
           centerTitle: true,
-          iconTheme: IconThemeData(color: Colors.black),
+          iconTheme: const IconThemeData(color: Colors.black),
         ),
         body: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Container(
+          child: const SizedBox(
             width: double.infinity,
             height: double.infinity,
             child: Center(child: Icon(Icons.hourglass_empty)),
           ),
         ),
-        floatingActionButton: Container(
-          child: FloatingActionButton(
-            child: Icon(Icons.add_circle),
-            onPressed: () => {},
-          )
+        floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add_circle),
+          onPressed: () => {},
         ),
       ),
     );

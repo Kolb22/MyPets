@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class IconFont extends StatelessWidget {
-  Color? color;
-  double? size;
-  String? iconName;
+  final Color? color;
+  final double? size;
+  final String? iconName;
 
-  IconFont({ this.color, this.size, this.iconName });
+  const IconFont({Key? key,  this.color, this.size, this.iconName }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

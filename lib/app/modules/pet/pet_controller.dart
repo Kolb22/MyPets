@@ -1,7 +1,4 @@
-import 'dart:typed_data';
 import 'dart:ui';
-
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:pets/app/data/repositories/local/mobile_repository.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';

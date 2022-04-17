@@ -14,7 +14,7 @@ class LoginController extends GetxController{
   }
 
   Future<void> submit() async{
-    print(_username + " : " + _password);
+    
     Get.offNamed(AppRoutes.HOME);
   }
 }

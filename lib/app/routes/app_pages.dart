@@ -19,7 +19,7 @@ class AppPages {
   static final List<GetPage> pages = [
     GetPage(name: AppRoutes.SPLASH, page: () => const SplashPage(), binding: SplashBinding()),
     GetPage(name: AppRoutes.LOGIN, page: () => const LoginPage(), binding: LoginBinding()),
-    GetPage(name: AppRoutes.HOME, page: () =>  HomePage(), binding: HomeBinding()),
+    GetPage(name: AppRoutes.HOME, page: () =>  const HomePage(), binding: HomeBinding()),
     GetPage(name: AppRoutes.REGISTER, page: () =>  const RegisterPage(), binding: RegisterBinding()),
     GetPage(name: AppRoutes.PET, page: () =>  const PetPage(), binding: PetBinding()),
     GetPage(name: AppRoutes.PETS, page: () =>  const PetListPage(), binding: PetListBinding()),

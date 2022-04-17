@@ -53,7 +53,7 @@ class PetPage extends StatelessWidget {
                           elevation: 10,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30.0),
-                            side: BorderSide(width: 2, color: Colors.black),
+                            side: const BorderSide(width: 2, color: Colors.black),
                           ),
                           child: SizedBox(
                               height: 270,
@@ -68,7 +68,7 @@ class PetPage extends StatelessWidget {
                             elevation: 10,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(30.0),
-                              side: BorderSide(width: 2, color: Colors.black),
+                              side: const BorderSide(width: 2, color: Colors.black),
                             ),
                           child: SizedBox(
                             height: 270,
@@ -166,7 +166,7 @@ class PetPage extends StatelessWidget {
                     elevation: 10,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                        side: BorderSide(width: 2, color: Colors.black),
+                        side: const BorderSide(width: 2, color: Colors.black),
                     ),
                     child: SingleChildScrollView(
                       child: Padding(
@@ -187,12 +187,12 @@ class PetPage extends StatelessWidget {
                                   itemCount: 6,
                                   shrinkWrap: true,
                                   itemBuilder: (context, i) {
-                                    return  ExpansionTile(title: Text("Limpieza"),
+                                    return  ExpansionTile(title: const Text("Limpieza"),
                                       expandedCrossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
+                                          children: const [
                                             Text("probando"),
                                             Text("probando"),
                                             Text("probando"),
@@ -218,7 +218,7 @@ class PetPage extends StatelessWidget {
                     elevation: 10,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30.0),
-                      side: BorderSide(width: 2, color: Colors.black),
+                      side: const BorderSide(width: 2, color: Colors.black),
                     ),
                     child: SingleChildScrollView(
                       child: Padding(
@@ -239,12 +239,12 @@ class PetPage extends StatelessWidget {
                                   itemCount: 10,
                                   shrinkWrap: true,
                                   itemBuilder: (context, i) {
-                                    return  ExpansionTile(title: Text("Veterinario"),
+                                    return  ExpansionTile(title: const Text("Veterinario"),
                                       expandedCrossAxisAlignment: CrossAxisAlignment.end,
                                       children: [
                                         Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                          children: [
+                                          children: const [
                                             Text("probando"),
                                             Text("probando"),
                                             Text("probando"),

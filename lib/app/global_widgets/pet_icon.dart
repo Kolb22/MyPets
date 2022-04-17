@@ -4,12 +4,12 @@ import 'icon_font.dart';
 
 
 class PetIcon extends StatelessWidget {
-  Color? color;
-  String? iconName;
-  double size;
-  double padding;
+  final Color? color;
+  final String? iconName;
+  final double size;
+  final double padding;
 
-  PetIcon({Key? key,
+  const PetIcon({Key? key,
     this.color,
     this.iconName,
     this.size = 20,
@@ -20,10 +20,10 @@ class PetIcon extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipOval(
       child: Container(
-          color: this.color,
-          padding: EdgeInsets.all(this.padding),
+          color: color,
+          padding: EdgeInsets.all(padding),
           child: IconFont(
-              color: Colors.white, iconName: this.iconName, size: this.size)),
+              color: Colors.white, iconName: iconName, size: size)),
     );
   }
 }

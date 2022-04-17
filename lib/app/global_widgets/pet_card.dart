@@ -3,10 +3,10 @@ import 'package:pets/app/global_widgets/pet_icon.dart';
 
 
 class PetCard extends StatelessWidget {
-  //Pet? pet;
-  Function? onCardClick;
 
-  PetCard({ this.onCardClick });
+  final Function? onCardClick;
+
+  const PetCard({Key? key,  this.onCardClick }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,12 +52,12 @@ class PetCard extends StatelessWidget {
                 child: Padding(
                   padding: const EdgeInsets.all(10),
                   child: Row(
-                    children: [
+                    children: const [
                       PetIcon(
                           color: Color(0xFFffdec8),
                           iconName: "Dog"),
-                      const SizedBox(width: 10),
-                      const Text("Yordy",
+                      SizedBox(width: 10),
+                      Text("Yordy",
                           style: TextStyle(color: Color(0xFFffdec8), fontSize: 25, fontWeight: FontWeight.bold))
                     ],
                   ),
