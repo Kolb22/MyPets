@@ -3,6 +3,7 @@
 
 class AppRoutes{
   static const SPLASH = "/splash";
+  static const SPLASH_MENU= "/splash-menu";
   static const HOME = "/home";
   static const LOGIN = "/login";
   static const REGISTER = "/register";

@@ -10,7 +10,7 @@ class LogoutIconButton extends StatelessWidget {
     return IconButton(
       icon: const Icon(Icons.logout),
       onPressed: () {
-        Get.offNamed(AppRoutes.LOGIN);
+        Get.offNamed(AppRoutes.SPLASH_MENU);
       },
     );
   }

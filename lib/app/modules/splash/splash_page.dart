@@ -14,8 +14,8 @@ class SplashPage extends StatelessWidget {
         body: Center(
           child: Image.asset(
             'assets/images/dog.png',
-            height: 250,
-            width: 250,
+            height: 350,
+            width: 350,
           ),
         ),
       ),
