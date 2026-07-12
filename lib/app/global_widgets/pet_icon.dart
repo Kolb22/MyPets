@@ -9,12 +9,13 @@ class PetIcon extends StatelessWidget {
   final double size;
   final double padding;
 
-  const PetIcon({Key? key,
+  const PetIcon({
+    super.key,
     this.color,
     this.iconName,
     this.size = 20,
-    this.padding = 10
-  }) : super(key: key);
+    this.padding = 10,
+  });
 
   @override
   Widget build(BuildContext context) {

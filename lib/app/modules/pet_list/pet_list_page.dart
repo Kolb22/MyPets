@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:pets/app/global_widgets/logout_icon_button.dart';
+import 'package:pets/app/global_widgets/app_menu_button.dart';
 import 'package:pets/app/global_widgets/pet_card.dart';
-import 'package:pets/app/global_widgets/share_icon_button.dart';
 import 'package:pets/app/routes/app_routes.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:share_plus/share_plus.dart';
 import 'pet_list_controller.dart';
 
 class PetListPage extends StatelessWidget {
-  const PetListPage({Key? key}) : super(key: key);
+  const PetListPage({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +15,7 @@ class PetListPage extends StatelessWidget {
       builder: (_) => SafeArea(
         child: Scaffold(
           appBar: AppBar(
+            shape: const Border(bottom: BorderSide(color: Colors.black, width: 1.5)),
             centerTitle: true,
             iconTheme: const IconThemeData(
               color: Colors.black, //change your color here
@@ -24,10 +24,65 @@ class PetListPage extends StatelessWidget {
                 style: TextStyle(
                 color: Colors.black
             )),
-            backgroundColor: const Color(0xFFffdec8),
-            actions: const [
-              ShareIconButton(id: "213123"),
-              LogoutIconButton()
+          backgroundColor: const Color(0xFFffdec8),
+            actions: [
+              AppMenuButton(
+                onSelected: (value) {
+                  switch (value) {
+                    case 'search':
+                      break;
+                    case 'create':
+                      Get.toNamed(AppRoutes.PET);
+                      break;
+                    case 'share':
+                      SharePlus.instance.share(
+                        ShareParams(text: "The number of my list is: 213123"),
+                      );
+                      break;
+                    case 'logout':
+                      Get.offNamed(AppRoutes.SPLASH_MENU);
+                      break;
+                  }
+                },
+                items: const [
+                  PopupMenuItem(
+                    value: 'search',
+                    child: ListTile(
+                      leading: Icon(Icons.search, color: Colors.black),
+                      title: Text("Search"),
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'create',
+                    child: ListTile(
+                      leading: Icon(Icons.create, color: Colors.black),
+                      title: Text("Create"),
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'share',
+                    child: ListTile(
+                      leading: Icon(Icons.share, color: Colors.black),
+                      title: Text("Share"),
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                  ),
+                  PopupMenuItem(
+                    value: 'logout',
+                    child: ListTile(
+                      leading: Icon(Icons.logout, color: Colors.black),
+                      title: Text("Logout"),
+                      dense: true,
+                      contentPadding: EdgeInsets.zero,
+                    ),
+                  ),
+                ],
+              ),
             ],
           ),
           backgroundColor: const Color(0xFFffdec8),
@@ -48,26 +103,7 @@ class PetListPage extends StatelessWidget {
                 )
               ]
           ),
-          floatingActionButton: SpeedDial(
-            animatedIcon: AnimatedIcons.menu_close,
-            backgroundColor: Colors.black,
-            overlayColor: Colors.black,
-            overlayOpacity: 0.4,
-            spacing: 5,
-            spaceBetweenChildren: 10,
-            children: [
-              SpeedDialChild(
-                child: const Icon(Icons.search),
-                  label: "Search",
-                  labelStyle: const TextStyle(fontWeight: FontWeight.bold)
-              ),
-              SpeedDialChild(
-                  child: const Icon(Icons.create),
-                  label: "Create",
-                  labelStyle: const TextStyle(fontWeight: FontWeight.bold)
-              ),
-            ],
-          ),
+          // floatingActionButton removido
         ),
       ),
     );

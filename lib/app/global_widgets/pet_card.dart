@@ -6,7 +6,7 @@ class PetCard extends StatelessWidget {
 
   final Function? onCardClick;
 
-  const PetCard({Key? key,  this.onCardClick }) : super(key: key);
+  const PetCard({super.key, this.onCardClick});
 
   @override
   Widget build(BuildContext context) {
@@ -43,16 +43,16 @@ class PetCard extends StatelessWidget {
                             begin: Alignment.bottomCenter,
                             end: Alignment.topCenter,
                             colors: [
-                              Colors.black.withOpacity(0.7),
+                              Colors.black.withValues(alpha: 0.7),
                               Colors.transparent
                             ]))),
               ),
-              Positioned(
+              const Positioned(
                 bottom: 0,
                 child: Padding(
-                  padding: const EdgeInsets.all(10),
+                  padding: EdgeInsets.all(10),
                   child: Row(
-                    children: const [
+                    children: [
                       PetIcon(
                           color: Color(0xFFffdec8),
                           iconName: "Dog"),

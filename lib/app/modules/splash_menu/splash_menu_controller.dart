@@ -1,6 +1,4 @@
 import 'package:get/get.dart';
-import 'package:pets/app/routes/app_routes.dart';
-
 
 class SplashMenuController extends GetxController{
 
@@ -9,7 +7,7 @@ class SplashMenuController extends GetxController{
     _init();
   }
 
-  _init() async {
+  Future<void> _init() async {
     try{
      // await Future.delayed(const Duration(seconds: 60));
       //Get.offNamed(AppRoutes.LOGIN);

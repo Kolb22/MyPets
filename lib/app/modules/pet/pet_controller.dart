@@ -20,10 +20,10 @@ class PetController extends GetxController{
         pen: PdfPen(PdfColor(142, 170, 219, 255)));
     //Generate PDF grid.
     //Draw the header section by creating text element
-    final PdfLayoutResult result = drawHeader(page, pageSize);
+    drawHeader(page, pageSize);
     //Draw grid
     //Save the PDF document
-    final List<int> bytes = document.save();
+    final List<int> bytes = await document.save();
     //Dispose the document.
     document.dispose();
     //Save and launch the file.

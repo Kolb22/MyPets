@@ -5,7 +5,7 @@ import 'package:pets/app/modules/splash_menu/local_widgets/footer_widget.dart';
 import 'splash_menu_controller.dart';
 
 class SplashMenuPage extends StatelessWidget {
-  const SplashMenuPage({Key? key}) : super(key: key);
+  const SplashMenuPage({super.key});
 
   @override
   Widget build(BuildContext context) {

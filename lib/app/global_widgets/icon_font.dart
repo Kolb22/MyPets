@@ -5,7 +5,7 @@ class IconFont extends StatelessWidget {
   final double? size;
   final String? iconName;
 
-  const IconFont({Key? key,  this.color, this.size, this.iconName }) : super(key: key);
+  const IconFont({super.key, this.color, this.size, this.iconName});
 
   @override
   Widget build(BuildContext context) {

@@ -5,13 +5,11 @@ import 'package:pets/app/routes/app_routes.dart';
 import 'dart:math' as math;
 
 class BottomSplashMenuPart extends StatelessWidget {
-  const BottomSplashMenuPart({Key? key}) : super(key: key);
+  const BottomSplashMenuPart({super.key});
 
   @override
   Widget build(BuildContext context) {
-    ScreenUtil.init(BoxConstraints(
-        maxWidth: MediaQuery.of(context).size.width,
-        maxHeight: MediaQuery.of(context).size.height));
+    ScreenUtil.init(context);
     return Align(
       alignment: Alignment.bottomCenter,
       child: Padding(
