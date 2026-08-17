@@ -10,7 +10,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<LoginController>(
-        builder: (_) => SafeArea(
+        builder: (controller) => SafeArea(
               child: Scaffold(
                 backgroundColor: Colors.white,
                 resizeToAvoidBottomInset: true,
@@ -40,7 +40,7 @@ class LoginPage extends StatelessWidget {
                             children: <Widget>[
                               Container(
                                 width: double.infinity,
-                                padding: const EdgeInsets.only(bottom: 22.0),
+                                padding: const EdgeInsets.only(bottom: 24.0),
                                 decoration: const BoxDecoration(
                                   color: Colors.white,
                                 ),
@@ -57,7 +57,7 @@ class LoginPage extends StatelessWidget {
                                               fontWeight: FontWeight.bold,
                                               letterSpacing: .6)),
                                       SizedBox(
-                                        height: ScreenUtil().setHeight(30),
+                                        height: ScreenUtil().setHeight(16),
                                       ),
                                       Text("Username",
                                           style: TextStyle(
@@ -65,13 +65,13 @@ class LoginPage extends StatelessWidget {
                                                   ScreenUtil().setSp(16))),
                                       const TextField(
                                         decoration: InputDecoration(
-                                            hintText: "username",
+                                            hintText: "Username",
                                             hintStyle: TextStyle(
                                                 color: Colors.grey,
                                                 fontSize: 12.0)),
                                       ),
                                       SizedBox(
-                                        height: ScreenUtil().setHeight(20),
+                                        height: ScreenUtil().setHeight(16),
                                       ),
                                       Text("Password",
                                           style: TextStyle(
@@ -86,38 +86,57 @@ class LoginPage extends StatelessWidget {
                                                 fontSize: 12.0)),
                                       ),
                                       SizedBox(
-                                        height: ScreenUtil().setHeight(25),
+                                        height: ScreenUtil().setHeight(16),
                                       ),
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.spaceBetween,
-                                        children: <Widget>[
-                                          Row(
-                                            children: <Widget>[
-                                              const SizedBox(
-                                                width: 12.0,
-                                              ),
-                                              GestureDetector(
-                                                onTap: () => {},
-                                                child: radioButton(true),
-                                              ),
-                                              const SizedBox(
-                                                width: 8.0,
-                                              ),
-                                              const Text("Remember me",
-                                                  style: TextStyle(
-                                                      fontSize: 12,
-                                                      fontFamily:
-                                                          "Poppins-Medium"))
-                                            ],
+                                        children: [
+                                          Transform.translate(
+                                            offset: const Offset(-8, 0),
+                                            child: Row(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Obx(
+                                                  () => Checkbox(
+                                                    value: controller
+                                                        .isRemembered.value,
+                                                    onChanged: (v) => controller
+                                                            .isRemembered
+                                                            .value = v!,
+                                                    fillColor:
+                                                        WidgetStateProperty
+                                                            .resolveWith(
+                                                      (states) =>
+                                                          states.contains(
+                                                                  WidgetState
+                                                                      .selected)
+                                                              ? const Color(
+                                                                  0xFF4b3306)
+                                                              : null,
+                                                    ),
+                                                    checkColor:
+                                                        Colors.white,
+                                                    materialTapTargetSize:
+                                                        MaterialTapTargetSize
+                                                            .shrinkWrap,
+                                                    visualDensity:
+                                                        VisualDensity.compact,
+                                                  ),
+                                                ),
+                                                Text('remember_me'.tr),
+                                              ],
+                                            ),
                                           ),
-                                          Text(
-                                            "Forgot Password?",
-                                            style: TextStyle(
-                                                color: Colors.blue,
-                                                fontSize:
-                                                    ScreenUtil().setSp(16)),
-                                          )
+                                          GestureDetector(
+                                            onTap: () =>
+                                                controller.forgotPassword(),
+                                            child: Text('forgot_password'.tr,
+                                                style: const TextStyle(
+                                                    color: Colors.blue,
+                                                    fontWeight:
+                                                        FontWeight.w500)),
+                                          ),
                                         ],
                                       )
                                     ],
@@ -165,7 +184,7 @@ class LoginPage extends StatelessWidget {
                                 ),
                               ),
                               SizedBox(
-                                height: ScreenUtil().setHeight(10),
+                                height: ScreenUtil().setHeight(16),
                               ),
                               Row(
                                 mainAxisAlignment:
@@ -180,14 +199,19 @@ class LoginPage extends StatelessWidget {
                                 ],
                               ),
                               SizedBox(
-                                height: ScreenUtil().setHeight(10),
+                                height: ScreenUtil().setHeight(16),
                               ),
                               Row(
                                 children: <Widget>[
-                                  const Expanded(
+                                  Expanded(
                                     flex: 7,
                                     child: TextField(
-                                      decoration: InputDecoration(
+                                      controller: controller.petCodeController,
+                                      textInputAction: TextInputAction.search,
+                                      onSubmitted: (_) {
+                                        controller.submitPetCode();
+                                      },
+                                      decoration: const InputDecoration(
                                           enabledBorder: OutlineInputBorder(
                                               borderSide: BorderSide(
                                                   color: Colors.black)),
@@ -211,7 +235,9 @@ class LoginPage extends StatelessWidget {
                                   Expanded(
                                     flex: 2,
                                     child: InkWell(
-                                      onTap: () => {Get.toNamed(AppRoutes.PET)},
+                                      onTap: () {
+                                        controller.submitPetCode();
+                                      },
                                       child: Container(
                                         width: double.infinity,
                                         height: ScreenUtil().setHeight(45),
@@ -258,19 +284,4 @@ Widget horizontalLine() => Container(
       color: Colors.black26.withValues(alpha: .2),
     );
 
-Widget radioButton(bool isSelected) => Container(
-      width: 16.0,
-      height: 16.0,
-      padding: const EdgeInsets.all(2.0),
-      decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          border: Border.all(width: 2.0, color: Colors.black)),
-      child: isSelected
-          ? Container(
-              width: double.infinity,
-              height: double.infinity,
-              decoration: const BoxDecoration(
-                  shape: BoxShape.circle, color: Colors.black),
-            )
-          : Container(),
-    );
+

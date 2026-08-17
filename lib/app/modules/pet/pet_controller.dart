@@ -1,11 +1,12 @@
 import 'dart:ui';
 import 'package:get/get.dart';
+import 'package:pets/app/data/models/pet.dart';
 import 'package:pets/app/data/repositories/local/mobile_repository.dart';
 import 'package:syncfusion_flutter_pdf/pdf.dart';
 
-class PetController extends GetxController{
-
+class PetController extends GetxController {
   final MobileRepository _mobileRepository = Get.find<MobileRepository>();
+  late final Pet? pet = Get.arguments is Pet ? Get.arguments as Pet : null;
 
   Future<void> createPDF() async {
     //Create a PDF document.
@@ -33,9 +34,8 @@ class PetController extends GetxController{
 
   //Draws the invoice header
   PdfLayoutResult drawHeader(PdfPage page, Size pageSize) {
-
     final PdfFont contentFont = PdfStandardFont(PdfFontFamily.helvetica, 9);
-    
+
     // ignore: leading_newlines_in_multiline_strings
     const String address = '''Bill To: \r\n\r\nAbraham Swearegin, 
         \r\n\r\nUnited States, California, San Mateo, 
@@ -43,10 +43,9 @@ class PetController extends GetxController{
 
     return PdfTextElement(text: address, font: contentFont).draw(
         page: page,
-        bounds: Rect.fromLTWH(30, 120,
-            pageSize.width - (30), pageSize.height - 120))!;
+        bounds: Rect.fromLTWH(
+            30, 120, pageSize.width - (30), pageSize.height - 120))!;
   }
-
 
   //Create and row for the grid.
   void addProducts(String productId, String productName, double price,
@@ -64,7 +63,7 @@ class PetController extends GetxController{
     double total = 0;
     for (int i = 0; i < grid.rows.count; i++) {
       final String value =
-      grid.rows[i].cells[grid.columns.count - 1].value as String;
+          grid.rows[i].cells[grid.columns.count - 1].value as String;
       total += double.parse(value);
     }
     return total;

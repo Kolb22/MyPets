@@ -5,24 +5,26 @@ import 'package:pets/app/global_widgets/app_menu_button.dart';
 import 'package:pets/app/routes/app_routes.dart';
 import 'package:pets/app/modules/pet/pet_controller.dart';
 import 'package:share_plus/share_plus.dart';
+
 class PetPage extends StatelessWidget {
   const PetPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return GetBuilder<PetController>(
-      builder: (c) => SafeArea(
-        child: Scaffold(
-          appBar: AppBar(
-              shape: const Border(bottom: BorderSide(color: Colors.black, width: 1.5)),
+      builder: (c) {
+        final pet = c.pet;
+
+        return SafeArea(
+          child: Scaffold(
+            appBar: AppBar(
+              shape: const Border(
+                  bottom: BorderSide(color: Colors.black, width: 1.5)),
               centerTitle: true,
               iconTheme: const IconThemeData(
                 color: Colors.black,
               ),
-              title: const Text("Pet",
-                  style: TextStyle(
-                      color: Colors.black
-                  )),
+              title: const Text("Pet", style: TextStyle(color: Colors.black)),
               backgroundColor: const Color(0xFFffdec8),
               actions: [
                 AppMenuButton(
@@ -73,180 +75,226 @@ class PetPage extends StatelessWidget {
                 ),
               ],
             ),
-          backgroundColor: const Color(0xFFffdec8),
-          resizeToAvoidBottomInset: false,
-          body: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(18, 10, 18, 18),
-              child: Column(
-                children: [
-                  Card(
-                    semanticContainer: true,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: Colors.grey[50],
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      side: const BorderSide(width: 2, color: Colors.black),
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(30),
-                      child: Image.network('https://i.imgur.com/FiapxAD.jpeg',
-                          height: MediaQuery.of(context).size.width * 0.7,
-                          width: double.infinity,
-                          fit: BoxFit.cover),
-                    ),
-                  ),
-                  const SizedBox(height: 8),
-                  Card(
-                    semanticContainer: true,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: Colors.grey[50],
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      side: const BorderSide(width: 2, color: Colors.black),
-                    ),
+            backgroundColor: const Color(0xFFffdec8),
+            resizeToAvoidBottomInset: false,
+            body: pet == null
+                ? const Center(child: Text('Select a pet from the list.'))
+                : SingleChildScrollView(
                     child: Padding(
-                      padding: const EdgeInsets.all(16),
+                      padding: const EdgeInsets.fromLTRB(18, 10, 18, 18),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          const Center(
-                            child: Text("Description",
-                                style: TextStyle(
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold)
+                          Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Colors.grey[50],
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                              side: const BorderSide(
+                                  width: 2, color: Colors.black),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(30),
+                              child: Image.network(pet.imageUrl,
+                                  height:
+                                      MediaQuery.of(context).size.width * 0.7,
+                                  width: double.infinity,
+                                  fit: BoxFit.cover),
                             ),
                           ),
-                          const Divider(),
-                          infoRow("Name:", "Yordy"),
                           const SizedBox(height: 8),
-                          infoRow("Birthday:", "17-OCT-2010"),
-                          const SizedBox(height: 8),
-                          infoRow("Age:", "11"),
-                          const SizedBox(height: 8),
-                          infoRow("Animal:", "Dog"),
-                          const SizedBox(height: 8),
-                          infoRow("Race:", "N/A"),
-                          const SizedBox(height: 8),
-                          infoRow("Weight:", "25 Lbs"),
+                          Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Colors.grey[50],
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                              side: const BorderSide(
+                                  width: 2, color: Colors.black),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(16),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  const Center(
+                                    child: Text("Description",
+                                        style: TextStyle(
+                                            fontSize: 20,
+                                            fontWeight: FontWeight.bold)),
+                                  ),
+                                  const Divider(),
+                                  infoRow("Name:", pet.name),
+                                  const SizedBox(height: 8),
+                                  infoRow("Birthday:", pet.birthday),
+                                  const SizedBox(height: 8),
+                                  infoRow("Age:", pet.age),
+                                  const SizedBox(height: 8),
+                                  infoRow("Animal:", pet.animal),
+                                  const SizedBox(height: 8),
+                                  infoRow("Race:", pet.race),
+                                  const SizedBox(height: 8),
+                                  infoRow("Weight:", pet.weight),
+                                ],
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8.0,
+                          ),
+                          Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Colors.grey[50],
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                              side: const BorderSide(
+                                  width: 2, color: Colors.black),
+                            ),
+                            child: SingleChildScrollView(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Theme(
+                                  data: Theme.of(context).copyWith(
+                                      dividerColor: Colors.transparent),
+                                  child: ExpansionTile(
+                                    title: Text("Instructions",
+                                        style: TextStyle(
+                                            fontSize: ScreenUtil().setSp(25),
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: .6)),
+                                    children: [
+                                      //horizontalLine(),
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                3.7,
+                                        child: ListView.builder(
+                                          itemCount: pet.instructions.length,
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, i) {
+                                            final instruction =
+                                                pet.instructions[i];
+
+                                            return ExpansionTile(
+                                              title: Text(instruction.title),
+                                              expandedCrossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          16, 0, 16, 12),
+                                                  child: Column(
+                                                    children: [
+                                                      detailRow(
+                                                          'Frequency',
+                                                          instruction
+                                                              .frequency),
+                                                      detailRow(
+                                                          'Description',
+                                                          instruction
+                                                              .description),
+                                                      detailRow('Notes',
+                                                          instruction.notes),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 8.0,
+                          ),
+                          Card(
+                            semanticContainer: true,
+                            clipBehavior: Clip.antiAliasWithSaveLayer,
+                            color: Colors.grey[50],
+                            elevation: 10,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(30.0),
+                              side: const BorderSide(
+                                  width: 2, color: Colors.black),
+                            ),
+                            child: SingleChildScrollView(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Theme(
+                                  data: Theme.of(context).copyWith(
+                                      dividerColor: Colors.transparent),
+                                  child: ExpansionTile(
+                                    title: Text("Contacts",
+                                        style: TextStyle(
+                                            fontSize: ScreenUtil().setSp(25),
+                                            fontWeight: FontWeight.bold,
+                                            letterSpacing: .6)),
+                                    children: [
+                                      SizedBox(
+                                        height:
+                                            MediaQuery.of(context).size.height /
+                                                3.7,
+                                        child: ListView.builder(
+                                          itemCount: pet.contacts.length,
+                                          shrinkWrap: true,
+                                          itemBuilder: (context, i) {
+                                            final contact = pet.contacts[i];
+
+                                            return ExpansionTile(
+                                              title: Text(contact.name),
+                                              subtitle: Text(
+                                                contact.role,
+                                                style: const TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                              expandedCrossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              children: [
+                                                Padding(
+                                                  padding:
+                                                      const EdgeInsets.fromLTRB(
+                                                          16, 0, 16, 12),
+                                                  child: Column(
+                                                    children: [
+                                                      detailRow(
+                                                          'Name', contact.name),
+                                                      detailRow(
+                                                          'Role', contact.role),
+                                                      detailRow('Phone',
+                                                          contact.phone),
+                                                    ],
+                                                  ),
+                                                )
+                                              ],
+                                            );
+                                          },
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          )
                         ],
                       ),
                     ),
                   ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  Card(
-                    semanticContainer: true,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: Colors.grey[50],
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                        side: const BorderSide(width: 2, color: Colors.black),
-                    ),
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Theme(
-                          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            title: Text("Instructions",
-                                style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(25),
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: .6)),
-                            children: [
-                              //horizontalLine(),
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height / 3.7,
-                                child: ListView.builder(
-                                  itemCount: 6,
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, i) {
-                    return const ExpansionTile(title: Text("Limpieza"),
-                      expandedCrossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                                            Text("probando"),
-                                            Text("probando"),
-                                            Text("probando"),
-                                          ],
-                                        )
-                                      ],);
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 8.0,
-                  ),
-                  Card(
-                    semanticContainer: true,
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: Colors.grey[50],
-                    elevation: 10,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
-                      side: const BorderSide(width: 2, color: Colors.black),
-                    ),
-                    child: SingleChildScrollView(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Theme(
-                          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            title: Text("Contacts",
-                                style: TextStyle(
-                                    fontSize: ScreenUtil().setSp(25),
-                                    fontWeight: FontWeight.bold,
-                                    letterSpacing: .6)
-                            ),
-                            children: [
-                              SizedBox(
-                                height: MediaQuery.of(context).size.height / 3.7,
-                                child: ListView.builder(
-                                  itemCount: 10,
-                                  shrinkWrap: true,
-                                  itemBuilder: (context, i) {
-                    return const ExpansionTile(title: Text("Veterinario"),
-                      expandedCrossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                                            Text("probando"),
-                                            Text("probando"),
-                                            Text("probando"),
-                                          ],
-                                        )
-                                      ],
-                                    );
-                                  },
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                  )
-                ],
-              ),
-            ),
+            // floatingActionButton removido
           ),
-          // floatingActionButton removido
-        ),
-      ),
+        );
+      },
     );
   }
 
@@ -257,14 +305,45 @@ class PetPage extends StatelessWidget {
           width: 80,
           child: Text(label,
               style: const TextStyle(
-                  fontSize: 14, fontWeight: FontWeight.w600, color: Colors.black54)),
+                  fontSize: 14,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.black54)),
         ),
         Expanded(
           child: Text(value,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
+              style:
+                  const TextStyle(fontSize: 14, fontWeight: FontWeight.w400)),
         ),
       ],
+    );
+  }
+
+  Widget detailRow(String label, String value) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          SizedBox(
+            width: 96,
+            child: Text(
+              '$label:',
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                color: Colors.black54,
+              ),
+            ),
+          ),
+          Expanded(
+            child: Text(
+              value,
+              style: const TextStyle(fontSize: 13),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
