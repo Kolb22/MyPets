@@ -9,12 +9,12 @@ class SplashController extends GetxController{
     _init();
   }
 
-  _init() async {
+  Future<void> _init() async {
     try{
       await Future.delayed(const Duration(seconds: 4));
-      Get.offNamed(AppRoutes.LOGIN);
+      Get.offNamed(AppRoutes.SPLASH_MENU);
     } catch (e){
-      print(e);
+      e.printError();
     }
   }
 }

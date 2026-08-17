@@ -16,7 +16,9 @@ final Map<String, String> en = {
     'username' : LabelsEN.USERNAME,
     'password' : LabelsEN.PASSWORD,
     'friend' : LabelsEN.FRIEND,
-    'activities' : LabelsEN.ACTIVITIES
+    'activities' : LabelsEN.ACTIVITIES,
+    'forgot_password' : LabelsEN.FORGOT_PASSWORD,
+    'remember_me' : LabelsEN.REMEMBER_ME
 };
 
 final Map<String, String> es = {
@@ -24,5 +26,7 @@ final Map<String, String> es = {
     'username' : LabelsES.USERNAME,
     'password' : LabelsES.PASSWORD,
     'friend' : LabelsES.FRIEND,
-    'activities' : LabelsES.ACTIVITIES
+    'activities' : LabelsES.ACTIVITIES,
+    'forgot_password' : LabelsES.FORGOT_PASSWORD,
+    'remember_me' : LabelsES.REMEMBER_ME
 };

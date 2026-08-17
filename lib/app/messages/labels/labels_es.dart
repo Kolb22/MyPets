@@ -6,4 +6,7 @@ class LabelsES {
   static const PASSWORD = "Contraseña";
   static const FRIEND = "Amigos";
   static const ACTIVITIES = "Actividades";
+  static const FORGOT_PASSWORD = "¿Olvidaste tu contraseña?";
+  static const REMEMBER_ME = "Recordarme";
+
 }
